@@ -51,7 +51,6 @@ describe('Transaction', () => {
     });
 
     const response = await request(app).get('/transactions');
-
     expect(response.body.transactions).toHaveLength(3);
     expect(response.body.balance).toMatchObject({
       income: 8000,
