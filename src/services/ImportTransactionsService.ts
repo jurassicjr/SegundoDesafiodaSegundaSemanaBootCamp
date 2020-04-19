@@ -46,8 +46,10 @@ class ImportTransactionsService {
 
     const csvStream = fs
       .createReadStream(userAvatarFilePath)
-      .pipe(csv.parse({ delimiter: ',', headers: true }))
-      .on('data', async dataRow => data.push(dataRow));
+      .pipe(csv.parse({ delimiter: ',', headers: true, trim: true }))
+      .on('data', async dataRow => {
+        data.push(dataRow);
+      });
 
     await new Promise(resolve => csvStream.on('end', resolve));
 

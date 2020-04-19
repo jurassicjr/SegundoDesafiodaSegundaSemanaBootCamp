@@ -52,7 +52,7 @@ class CreateTransactionService {
       category_id: foundedCategory.id,
     });
 
-    this.transactionsRepository.save(transaction);
+    await this.transactionsRepository.save(transaction);
 
     return transaction;
   }
