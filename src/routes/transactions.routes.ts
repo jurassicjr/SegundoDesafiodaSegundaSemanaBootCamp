@@ -16,13 +16,7 @@ transactionsRouter.get('/', async (request, response) => {
     .createQueryBuilder('transactions')
     .leftJoinAndSelect('transactions.category', 'category')
     .getMany();
-  transactions.forEach(transaction => {
-    delete transaction.category_id;
-    delete transaction.created_at;
-    delete transaction.updated_at;
-    delete transaction.category.updated_at;
-    delete transaction.category.created_at;
-  });
+
   const balance = await transactionsRepository.getBalance();
   const answer = { transactions, balance };
 
